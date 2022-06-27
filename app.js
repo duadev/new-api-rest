@@ -1,14 +1,19 @@
 const express = require('express');
 const colors = require('colors');
+const morgan = require('morgan')
+const { conn } = require('./src/connection/conn')
+
 
 require('dotenv').config();
 const app = express();
+app.use(morgan('dev'))
 
 app.use('/', (req, res) => {
 
     res.send('Hola mundo')
 });
 
+conn();
 const port = process.env.PORT || 3000
 
 app.listen(port, () => {
